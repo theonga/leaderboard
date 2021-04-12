@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  title: LeaderBoard API
+  description: Games leaderboard api for generating top 10 players
+  version: 0.1.0
+servers:
+  - url: http://localhost:3000
+    description: Main server
+paths:
+  /:
+    get:
+      summary: Returns a list of players.
+      description: all players
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /add:
+    post:
+      summary: add a player.
+      requestBody:
+        required: true
+        content:
+            application/json:
+              schema: 
+                type: object
+                properties: 
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  position: 
+                    type: string
+                  score:
+                    type: integer
+      responses:
+        '201':    # status code
+          description: Created
+
+  /update:
+    post:
+      summary: update a players score.
+      requestBody:
+        required: true
+        content:
+            application/json:
+              schema: 
+                type: object
+                properties: 
+                  id:
+                    type: integer
+                  score:
+                    type: integer
+      responses:
+        '201':    # status code
+          description: Updated
+          
